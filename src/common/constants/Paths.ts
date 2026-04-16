@@ -9,6 +9,10 @@ const Paths = {
     Update: '/update',
     Delete: '/delete/:id',
   },
+  FeaturedTracks: {
+    _: '/tracks',
+    Get: '/featured',
+  }
 } as const;
 
 export const JetPaths = jetPaths(Paths);
