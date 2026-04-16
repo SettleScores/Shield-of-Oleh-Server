@@ -3,6 +3,7 @@ import tspo from 'tspo';
 
 import EnvVars, { NodeEnvs } from '@src/common/constants/env';
 import { IUser } from '@src/models/User.model';
+import { IFeaturedTrack } from '@src/models/FeaturedTrack.model';
 
 /******************************************************************************
                                 Constants
@@ -21,6 +22,7 @@ const DATABASE_FILE_PATH =
 
 type Database = {
   users: IUser[];
+  featuredTracks: IFeaturedTrack[];
 };
 
 /******************************************************************************
