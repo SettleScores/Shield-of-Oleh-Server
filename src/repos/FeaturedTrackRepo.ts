@@ -4,7 +4,7 @@ import orm from './MockOrm';
 
 import { FeaturedTrackMongoModel } from '@src/database/models/FeaturedTrack.mongo';
 
-import { mapFeaturedTrack } from "../database/mappers/FeaturedTrack.mapper";
+import { mapFeaturedTrack } from '../database/mappers/FeaturedTrack.mapper';
 /******************************************************************************
                                 Functions
 ******************************************************************************/

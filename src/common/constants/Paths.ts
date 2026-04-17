@@ -12,7 +12,11 @@ const Paths = {
   FeaturedTracks: {
     _: '/tracks',
     Get: '/featured',
-  }
+  },
+  Posts: {
+    _: '/posts',
+    Get: '',
+  },
 } as const;
 
 export const JetPaths = jetPaths(Paths);

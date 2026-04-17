@@ -6,6 +6,8 @@ import UserRoutes from './UserRoutes';
 
 import FeaturedTrackRoutes from './FeaturedTrackRoutes';
 
+import PostRoutes from './PostRoutes';
+
 /******************************************************************************
                                 Setup
 ******************************************************************************/
@@ -25,8 +27,13 @@ const featuredTrackRouter = Router();
 
 featuredTrackRouter.get(Paths.FeaturedTracks.Get, FeaturedTrackRoutes.getAll);
 
+const postRouter = Router()
+
+postRouter.get(Paths.Posts.Get, PostRoutes.getAll);
+
 apiRouter.use(Paths.Users._, userRouter);
 apiRouter.use(Paths.FeaturedTracks._, featuredTrackRouter);
+apiRouter.use(Paths.Posts._, postRouter);
 
 /******************************************************************************
                                 Export
