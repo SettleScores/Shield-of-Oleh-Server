@@ -1,16 +1,17 @@
-import { IPost } from '@src/models/Post.model';
+import { ILyrics } from '../models/Lyrics.model';
 
-import { PostMongoModel } from '@src/database/models/Post.mongo';
+import { LyricsMongoModel } from '@src/database/models/Lyrics.mongo';
 
-import { mapPost } from '../database/mappers/Post.mapper';
+import { mapLyrics } from '../database/mappers/Lyrics.mapper';
 
 /******************************************************************************
                                 Functions
 ******************************************************************************/
-export async function getAll(): Promise<IPost[]> {
-  const postDatabaseDocuments = await PostMongoModel.find().lean();
 
-  return postDatabaseDocuments.map(mapPost);
+export async function getAll(): Promise<ILyrics[]> {
+  const lyricsDatabaseDocuments = await LyricsMongoModel.find().lean();
+
+  return lyricsDatabaseDocuments.map(mapLyrics);
 }
 
 /******************************************************************************

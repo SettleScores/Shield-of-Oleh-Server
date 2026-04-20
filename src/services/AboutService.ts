@@ -1,16 +1,12 @@
-import { IPost } from '@src/models/Post.model';
-
-import { PostMongoModel } from '@src/database/models/Post.mongo';
-
-import { mapPost } from '../database/mappers/Post.mapper';
+import { IAbout } from '@src/models/About.model';
+import AboutRepo from '@src/repos/AboutRepo';
 
 /******************************************************************************
                                 Functions
 ******************************************************************************/
-export async function getAll(): Promise<IPost[]> {
-  const postDatabaseDocuments = await PostMongoModel.find().lean();
 
-  return postDatabaseDocuments.map(mapPost);
+function getAll(): Promise<IAbout> {
+  return AboutRepo.getAll();
 }
 
 /******************************************************************************

@@ -17,6 +17,14 @@ const Paths = {
     _: '/posts',
     Get: '',
   },
+  About: {
+    _: '/about',
+    Get: '',
+  },
+  Lyrics: {
+    _: '/lyrics',
+    Get: '',
+  },
 } as const;
 
 export const JetPaths = jetPaths(Paths);
