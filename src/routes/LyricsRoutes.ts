@@ -1,16 +1,16 @@
-import { IPost } from '@src/models/Post.model';
+import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
+import LyricsService from '@src/services/LyricsService';
 
-import { PostMongoModel } from '@src/database/models/Post.mongo';
-
-import { mapPost } from '../database/mappers/Post.mapper';
+import { Req, Res } from './common/express-types';
 
 /******************************************************************************
                                 Functions
 ******************************************************************************/
-export async function getAll(): Promise<IPost[]> {
-  const postDatabaseDocuments = await PostMongoModel.find().lean();
 
-  return postDatabaseDocuments.map(mapPost);
+async function getAll(_: Req, res: Res) {
+  const lyrics = await LyricsService.getAll();
+
+  res.status(HttpStatusCodes.OK).json(lyrics);
 }
 
 /******************************************************************************

@@ -1,5 +1,5 @@
-import { createMongoMapper } from "./createMongoMapper";
-import { IPost } from "../../models/Post.model";
+import { createMongoMapper } from './createMongoMapper';
+import { IPost } from '../../models/Post.model';
 
 export const mapPost = createMongoMapper(
   (databaseDocument): IPost => ({

@@ -8,6 +8,10 @@ import FeaturedTrackRoutes from './FeaturedTrackRoutes';
 
 import PostRoutes from './PostRoutes';
 
+import AboutRoutes from './AboutRoutes';
+
+import LyricsRoutes from './LyricsRoutes';
+
 /******************************************************************************
                                 Setup
 ******************************************************************************/
@@ -31,9 +35,19 @@ const postRouter = Router()
 
 postRouter.get(Paths.Posts.Get, PostRoutes.getAll);
 
+const aboutRouter = Router()
+
+aboutRouter.get(Paths.About.Get, AboutRoutes.getAll);
+
+const lyricsRouter = Router()
+
+lyricsRouter.get(Paths.Lyrics.Get, LyricsRoutes.getAll);
+
 apiRouter.use(Paths.Users._, userRouter);
 apiRouter.use(Paths.FeaturedTracks._, featuredTrackRouter);
 apiRouter.use(Paths.Posts._, postRouter);
+apiRouter.use(Paths.About._, aboutRouter);
+apiRouter.use(Paths.Lyrics._, lyricsRouter);
 
 /******************************************************************************
                                 Export

@@ -1,4 +1,4 @@
-import mongoose from "mongoose"; /// qqq mongusto
+import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
   slug: String,
