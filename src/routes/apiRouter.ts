@@ -12,6 +12,12 @@ import AboutRoutes from './AboutRoutes';
 
 import LyricsRoutes from './LyricsRoutes';
 
+import AlbumRoutes from './AlbumRoutes';
+
+import GalleryImageRoutes from './GalleryImageRoutes';
+
+import BandInfoRoutes from './BandInfoRoutes';
+
 /******************************************************************************
                                 Setup
 ******************************************************************************/
@@ -43,11 +49,26 @@ const lyricsRouter = Router()
 
 lyricsRouter.get(Paths.Lyrics.Get, LyricsRoutes.getAll);
 
+const albumsRouter = Router();
+
+albumsRouter.get(Paths.Albums.Get, AlbumRoutes.getAll);
+
+const galleryImageRouter = Router();
+
+galleryImageRouter.get(Paths.Gallery.Get, GalleryImageRoutes.getAll);
+
+const bandInfoRouter = Router();
+
+bandInfoRouter.get(Paths.BandInfo.Get, BandInfoRoutes.getAll);
+
 apiRouter.use(Paths.Users._, userRouter);
 apiRouter.use(Paths.FeaturedTracks._, featuredTrackRouter);
 apiRouter.use(Paths.Posts._, postRouter);
 apiRouter.use(Paths.About._, aboutRouter);
 apiRouter.use(Paths.Lyrics._, lyricsRouter);
+apiRouter.use(Paths.Albums._, albumsRouter);
+apiRouter.use(Paths.Gallery._, galleryImageRouter);
+apiRouter.use(Paths.BandInfo._, bandInfoRouter);
 
 /******************************************************************************
                                 Export

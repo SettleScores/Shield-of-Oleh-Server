@@ -25,6 +25,18 @@ const Paths = {
     _: '/lyrics',
     Get: '',
   },
+  Albums: {
+    _: '/albums',
+    Get: '',
+  },
+  Gallery: {
+    _: '/gallery',
+    Get: '',
+  },
+  BandInfo: {
+    _: '/band-info',
+    Get: '',
+  },
 } as const;
 
 export const JetPaths = jetPaths(Paths);
