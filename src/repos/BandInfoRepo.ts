@@ -11,7 +11,7 @@ export async function getAll(): Promise<IBandInfo> {
     throw new Error('BandInfo document not found');
   }
 
-  return mapBandInfo(bandInfoDocument);
+  return mapBandInfo(bandInfoDocument); /// TODO Take care about this shit
 }
 
 export default {
