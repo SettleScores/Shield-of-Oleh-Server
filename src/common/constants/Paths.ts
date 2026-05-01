@@ -1,6 +1,5 @@
 import jetPaths from 'jet-paths';
 
-/// qqq A Chaotic Paths
 const Paths = {
   _: '/api',
   Users: {

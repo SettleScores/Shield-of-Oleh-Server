@@ -9,8 +9,6 @@ import { mapAlbum } from '../database/mappers/Album.mapper';
 ******************************************************************************/
 
 export async function getAll(): Promise<IAlbum[]> {
-  console.log('qqq__AlbumRepo getAll');
-
   const albumDatabaseDocuments = await AlbumMongoModel.find().lean();
 
   return albumDatabaseDocuments.map(mapAlbum);

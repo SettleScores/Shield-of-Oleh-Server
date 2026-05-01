@@ -6,8 +6,6 @@ import AlbumRepo from '@src/repos/AlbumRepo';
 ******************************************************************************/
 
 function getAll(): Promise<IAlbum[]> {
-  console.log('qqq__AlbumService getAll'); 
-
   return AlbumRepo.getAll();
 }
 
