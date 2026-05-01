@@ -13,10 +13,19 @@ async function getAll(_: Req, res: Res) {
   res.status(HttpStatusCodes.OK).json(posts);
 }
 
+async function getOne(req: Req, res: Res) {
+  const { slug } = req.params;
+
+  const post = await PostService.getOne(slug);
+
+  res.status(HttpStatusCodes.OK).json(post);
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
 export default {
   getAll,
+  getOne
 } as const;

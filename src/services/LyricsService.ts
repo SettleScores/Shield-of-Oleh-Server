@@ -5,8 +5,12 @@ import LyricsRepo from '@src/repos/LyricsRepo';
                                 Functions
 ******************************************************************************/
 
-function getAll(): Promise<ILyrics> {
+function getAll(): Promise<ILyrics[]> {
   return LyricsRepo.getAll();
+}
+
+function getOne(slug: string): Promise<ILyrics> {
+  return LyricsRepo.getOne(slug);
 }
 
 /******************************************************************************
@@ -15,4 +19,5 @@ function getAll(): Promise<ILyrics> {
 
 export default {
   getAll,
+  getOne,
 } as const;
