@@ -14,11 +14,15 @@ import dotenv from 'dotenv';
 
 import { connectDB } from './common/db';
 
+import cors from 'cors';
+
 /******************************************************************************
                                 Setup
 ******************************************************************************/
 
 const app = express();
+
+app.use(cors());
 
 // **** Middleware **** //
 

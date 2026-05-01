@@ -40,6 +40,7 @@ featuredTrackRouter.get(Paths.FeaturedTracks.Get, FeaturedTrackRoutes.getAll);
 const postRouter = Router()
 
 postRouter.get(Paths.Posts.Get, PostRoutes.getAll);
+postRouter.get(Paths.Posts.GetOne, PostRoutes.getOne);
 
 const aboutRouter = Router()
 
@@ -48,6 +49,7 @@ aboutRouter.get(Paths.About.Get, AboutRoutes.getAll);
 const lyricsRouter = Router()
 
 lyricsRouter.get(Paths.Lyrics.Get, LyricsRoutes.getAll);
+lyricsRouter.get(Paths.Lyrics.GetOne, LyricsRoutes.getOne);
 
 const albumsRouter = Router();
 

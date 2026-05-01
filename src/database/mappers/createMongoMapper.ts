@@ -1,12 +1,7 @@
-type AnyDocumentFromDatabase = {
-  _id: any;
-  [key: string]: any;
-};
-
-export function createMongoMapper<T>(
-  mapDocumentToDto: (databaseDocument: AnyDocumentFromDatabase) => T
+export function createMongoMapper<TDb, TDto>(
+  mapDocumentToDto: (databaseDocument: TDb) => TDto
 ) {
-  return (databaseDocument: AnyDocumentFromDatabase): T => {
+  return (databaseDocument: TDb): TDto => {
     return mapDocumentToDto(databaseDocument);
   };
 }

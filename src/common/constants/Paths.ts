@@ -17,6 +17,7 @@ const Paths = {
   Posts: {
     _: '/posts',
     Get: '',
+    GetOne: '/:slug',
   },
   About: {
     _: '/about',
@@ -25,6 +26,7 @@ const Paths = {
   Lyrics: {
     _: '/lyrics',
     Get: '',
+    GetOne: '/:slug',
   },
   Albums: {
     _: '/albums',

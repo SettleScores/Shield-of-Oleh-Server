@@ -13,10 +13,19 @@ async function getAll(_: Req, res: Res) {
   res.status(HttpStatusCodes.OK).json(lyrics);
 }
 
+async function getOne(req: Req, res: Res) {
+  const { slug } = req.params;
+
+  const lyrics = await LyricsService.getOne(slug);
+
+  res.status(HttpStatusCodes.OK).json(lyrics);
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
 export default {
   getAll,
+  getOne,
 } as const;

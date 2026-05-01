@@ -13,10 +13,20 @@ export async function getAll(): Promise<IPost[]> {
   return postDatabaseDocuments.map(mapPost);
 }
 
+export async function getOne(slugg: string): Promise<IPost> {
+  const postDatabaseDocument = await PostMongoModel.findOne( {slug: slugg} ).lean();
+
+  if (postDatabaseDocument == null)
+    throw new Error('Post database document not found!');
+
+  return mapPost(postDatabaseDocument);
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
 export default {
   getAll,
+  getOne,
 } as const;
