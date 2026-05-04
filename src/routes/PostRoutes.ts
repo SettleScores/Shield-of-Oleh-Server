@@ -1,5 +1,5 @@
 import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
-import PostService from '@src/services/PostService';
+import PostService from '@src/services/post/PostService';
 
 import { Req, Res } from './common/express-types';
 
@@ -21,11 +21,36 @@ async function getOne(req: Req, res: Res) {
   res.status(HttpStatusCodes.OK).json(post);
 }
 
+async function post (req: Req, res: Res) {
+  console.log('qqq____PostRoutes post req: ', req.body);
+
+  try {
+    const { title, excerpt, content } = req.body;
+
+    const post = await PostService.post({
+      title,
+      excerpt,
+      content,
+    });
+
+    return res.status(HttpStatusCodes.CREATED).json({
+      success: true,
+      data: post,
+    });
+  } catch (err: any) { /// TODO Take care about the crap
+    return res.status(HttpStatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: err.message || 'Failed to create post',
+    });
+  }
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
 export default {
   getAll,
-  getOne
+  getOne,
+  post
 } as const;

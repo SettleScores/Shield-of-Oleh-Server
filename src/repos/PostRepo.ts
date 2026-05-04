@@ -22,6 +22,17 @@ export async function getOne(slugg: string): Promise<IPost> {
   return mapPost(postDatabaseDocument);
 }
 
+export async function post(post: IPost): Promise<IPost> { /// We decided to return da post here
+  const createdPost = await PostMongoModel.create(post);
+
+  return mapPost(createdPost.toObject());
+}
+
+export async function existsBySlug(slug: string): Promise<boolean> {
+  const doc = await PostMongoModel.exists({ slug });
+  return !!doc;
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
@@ -29,4 +40,6 @@ export async function getOne(slugg: string): Promise<IPost> {
 export default {
   getAll,
   getOne,
+  post,
+  existsBySlug,
 } as const;

@@ -1,4 +1,4 @@
-import { getRandomInt } from '@src/common/utils/number-utils';
+import { getRandomInt } from '@src/common/utils/generation-utils';
 import { IUser } from '@src/models/User.model';
 
 import orm from './MockOrm';
