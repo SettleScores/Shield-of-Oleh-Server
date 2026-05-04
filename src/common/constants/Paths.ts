@@ -17,6 +17,7 @@ const Paths = {
     _: '/posts',
     Get: '',
     GetOne: '/:slug',
+    Post: '',
   },
   About: {
     _: '/about',
