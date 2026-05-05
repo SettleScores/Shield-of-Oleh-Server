@@ -63,7 +63,7 @@ async function deletee(req: Req, res: Res) {
   }
 }
 
-async function put(req: Req, res: Res) { /// TODO Extend with PATCH
+async function put(req: Req, res: Res) { /// TODO Extend with PATCH qqq
   const { slug } = req.params;
 
   try {
