@@ -42,6 +42,8 @@ const postRouter = Router()
 postRouter.get(Paths.Posts.Get, PostRoutes.getAll);
 postRouter.get(Paths.Posts.GetOne, PostRoutes.getOne);
 postRouter.post(Paths.Posts.Post, PostRoutes.post);
+postRouter.delete(Paths.Posts.Delete, PostRoutes.deletee);
+postRouter.put(Paths.Posts.Delete, PostRoutes.put);
 
 const aboutRouter = Router()
 

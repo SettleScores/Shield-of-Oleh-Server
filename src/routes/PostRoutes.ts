@@ -22,8 +22,6 @@ async function getOne(req: Req, res: Res) {
 }
 
 async function post (req: Req, res: Res) {
-  console.log('qqq____PostRoutes post req: ', req.body);
-
   try {
     const { title, excerpt, content } = req.body;
 
@@ -45,6 +43,57 @@ async function post (req: Req, res: Res) {
   }
 }
 
+async function deletee(req: Req, res: Res) {
+  const { slug } = req.params;
+
+  try {
+    await PostService.deletee(slug);
+
+    return res.sendStatus(HttpStatusCodes.NO_CONTENT);
+  } catch (err: any) {
+    if (err.message === 'Post database document not found!') {
+      return res
+        .status(HttpStatusCodes.NOT_FOUND)
+        .json({ message: 'Post not found' });
+    }
+
+    return res
+      .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: 'Internal server error' });
+  }
+}
+
+async function put(req: Req, res: Res) { /// TODO Extend with PATCH
+  const { slug } = req.params;
+
+  try {
+    const { title, excerpt, content } = req.body;
+
+    const post = await PostService.put(slug, {
+      title,
+      excerpt,
+      content,
+    });
+
+    return res.status(HttpStatusCodes.OK).json({
+      success: true,
+      data: post,
+    });
+  } catch (err: any) {
+    if (err.message === 'Post database document not found!') { /// maybe extract constant
+      return res.status(HttpStatusCodes.NOT_FOUND).json({
+        success: false,
+        message: 'Post not found',
+      });
+    }
+
+    return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: err.message || 'Failed to update post',
+    });
+  }
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
@@ -52,5 +101,7 @@ async function post (req: Req, res: Res) {
 export default {
   getAll,
   getOne,
-  post
+  post,
+  deletee,
+  put,
 } as const;

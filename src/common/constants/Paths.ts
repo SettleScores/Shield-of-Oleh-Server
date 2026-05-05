@@ -18,6 +18,8 @@ const Paths = {
     Get: '',
     GetOne: '/:slug',
     Post: '',
+    Delete: '/:slug',
+    Put: '/:slug',
   },
   About: {
     _: '/about',

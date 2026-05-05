@@ -21,29 +21,62 @@ function getOne(slug: string): Promise<IPost> {
 }
 
 async function post(postDto: PostDto): Promise<IPost> { 
-   // 1. базова валідація (мінімальна, не DTO layer)
   if (!postDto.title || !postDto.content) {
     throw new Error('Title and content are required');
   }
-
-  // 2. генеруємо базовий slug
   const baseSlug = generateSlug(postDto.title);
 
-  // 3. унікальний slug через окремий slug service
   const slug = await generateUniqueSlug(
     baseSlug,
     (s: string) => PostRepo.existsBySlug(s)
   );
 
-  // 4. створення поста (date ігнорується)
   const post = await PostRepo.post({
+    title: postDto.title,
+    excerpt: postDto.excerpt,
+    content: postDto.content,
+    slug,
+  } as IPost); /// TODO IPost here should be RrrremoOvd
+
+  return post;
+}
+
+function deletee(slug: string): Promise<void> {
+  return PostRepo.deletee(slug);
+}
+
+async function put(slugg: string, postDto: PostDto): Promise<IPost> {
+  /// basic validation
+  if (!postDto.title || !postDto.content) {
+    throw new Error('Title and content are required');
+  }
+
+  const existingPost = await PostRepo.getOne(slugg);
+
+  if (!existingPost) {
+    throw new Error('Post not found');
+  }
+
+  let slug = existingPost.slug;
+
+  /// if title changed — refreshing slug
+  if (postDto.title !== existingPost.title) {
+    const baseSlug = generateSlug(postDto.title);
+
+    slug = await generateUniqueSlug(
+      baseSlug,
+      (s: string) => PostRepo.existsBySlug(s)
+    );
+  }
+
+  const updatedPost = await PostRepo.put(slugg, {
     title: postDto.title,
     excerpt: postDto.excerpt,
     content: postDto.content,
     slug,
   } as IPost);
 
-  return post;
+  return updatedPost;
 }
 
 /******************************************************************************
@@ -54,4 +87,6 @@ export default {
   getAll,
   getOne,
   post,
+  deletee,
+  put,
 } as const;

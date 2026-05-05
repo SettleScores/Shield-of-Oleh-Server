@@ -33,6 +33,33 @@ export async function existsBySlug(slug: string): Promise<boolean> {
   return !!doc;
 }
 
+export async function deletee(slugg: string) {
+  const deletedPost = await PostMongoModel
+    .findOneAndDelete({ slug: slugg })
+    .lean();
+
+  if (deletedPost == null)
+    throw new Error('Post database document not found!');
+}
+
+export async function put(
+  slugg: string,
+  replacementPost: IPost
+): Promise<IPost> {
+
+
+  const updatedPost = await PostMongoModel.findOneAndReplace(
+    { slug: slugg },
+    replacementPost,
+    { returnDocument: 'after', lean: true }
+);
+
+  if (updatedPost == null)
+    throw new Error('Post database document not found!');
+
+  return mapPost(updatedPost);
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
@@ -42,4 +69,6 @@ export default {
   getOne,
   post,
   existsBySlug,
+  deletee,
+  put,
 } as const;
