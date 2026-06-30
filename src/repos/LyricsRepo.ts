@@ -23,6 +23,36 @@ export async function getOne(slugg: string): Promise<ILyrics> {
   return mapLyrics(lyricsDatabaseDocument);
 }
 
+export async function existsBySlug(slug: string): Promise<boolean> {
+  const doc = await LyricsMongoModel.exists({ slug });
+  return !!doc;
+}
+
+export async function deletee(slugg: string) {
+  const deletedLyrics = await LyricsMongoModel
+    .findOneAndDelete({ slug: slugg })
+    .lean();
+
+  if (deletedLyrics == null)
+    throw new Error('Lyrics database document not found!');
+}
+
+export async function putt(
+  slug: string,
+  replacementLyrics: ILyrics
+): Promise<ILyrics> {
+  const updatedLyrics = await LyricsMongoModel.findOneAndReplace(
+    { slug },
+    replacementLyrics,
+    { returnDocument: 'after', lean: true }
+  );
+
+  if (updatedLyrics == null)
+    throw new Error('Lyrics database document not found!');
+
+  return mapLyrics(updatedLyrics);
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
@@ -30,4 +60,7 @@ export async function getOne(slugg: string): Promise<ILyrics> {
 export default {
   getAll,
   getOne,
+  existsBySlug,
+  deletee,
+  putt,
 } as const;

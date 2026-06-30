@@ -46,8 +46,6 @@ export async function put(
   slugg: string,
   replacementPost: IPost
 ): Promise<IPost> {
-
-
   const updatedPost = await PostMongoModel.findOneAndReplace(
     { slug: slugg },
     replacementPost,

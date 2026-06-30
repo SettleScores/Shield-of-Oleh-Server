@@ -1,3 +1,4 @@
+/// TODO Investigate how it works
 export async function generateUniqueSlug(
   baseSlug: string,
   exists: (slug: string) => Promise<boolean>

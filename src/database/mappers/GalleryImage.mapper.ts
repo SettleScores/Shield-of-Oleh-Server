@@ -8,6 +8,8 @@ export const mapGalleryImage = createMongoMapper(
     url: databaseDocument.url,
     thumbnailUrl: databaseDocument.thumbnailUrl,
     caption: databaseDocument.caption,
+    slug: databaseDocument.slug,
+    objectKey: databaseDocument.objectKey,
     created: databaseDocument.created,
   })
 );

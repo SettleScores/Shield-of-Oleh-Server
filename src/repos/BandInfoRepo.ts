@@ -14,6 +14,23 @@ export async function getAll(): Promise<IBandInfo> {
   return mapBandInfo(bandInfoDocument); /// TODO Take care about this shit
 }
 
+async function putt(
+  replacementBandInfo: IBandInfo,
+): Promise<IBandInfo> {
+  const updatedBandInfoDocument = await BandInfoMongoModel.findOneAndReplace(
+    {},
+    replacementBandInfo,
+    { returnDocument: 'after', lean: true }
+  );
+
+  if (!updatedBandInfoDocument) {
+    throw new Error('Failed to update BandInfo document');
+  }
+
+  return mapBandInfo(updatedBandInfoDocument);
+}
+
 export default {
   getAll,
+  putt,
 } as const;

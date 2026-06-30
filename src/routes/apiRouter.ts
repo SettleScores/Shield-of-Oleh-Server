@@ -18,6 +18,13 @@ import GalleryImageRoutes from './GalleryImageRoutes';
 
 import BandInfoRoutes from './BandInfoRoutes';
 
+import { validate } from '@src/middleware/validator';
+
+import { BandInfoSchema } from '@src/services/band_info/bandInfo.schema';
+
+import UploadRoutes from './UploadRoutes';
+import { uploadMiddleware } from '@src/middleware/uploadMiddleware';
+
 /******************************************************************************
                                 Setup
 ******************************************************************************/
@@ -53,18 +60,28 @@ const lyricsRouter = Router()
 
 lyricsRouter.get(Paths.Lyrics.Get, LyricsRoutes.getAll);
 lyricsRouter.get(Paths.Lyrics.GetOne, LyricsRoutes.getOne);
+lyricsRouter.delete(Paths.Lyrics.Delete, LyricsRoutes.deletee);
+lyricsRouter.put(Paths.Lyrics.Put, LyricsRoutes.putt);
 
 const albumsRouter = Router();
 
 albumsRouter.get(Paths.Albums.Get, AlbumRoutes.getAll);
+albumsRouter.post(Paths.Albums.Post, AlbumRoutes.post);
 
 const galleryImageRouter = Router();
 
 galleryImageRouter.get(Paths.Gallery.Get, GalleryImageRoutes.getAll);
+galleryImageRouter.post(Paths.Gallery.Post, GalleryImageRoutes.post);
+galleryImageRouter.delete(Paths.Gallery.Delete, GalleryImageRoutes.deletee);
 
 const bandInfoRouter = Router();
 
 bandInfoRouter.get(Paths.BandInfo.Get, BandInfoRoutes.getAll);
+bandInfoRouter.put(Paths.BandInfo.Put, validate(BandInfoSchema), BandInfoRoutes.putt); /// TODO Extend Others with this Zod validate Too!
+
+const uploadRouter = Router();
+
+uploadRouter.post(Paths.Uploads.Post, uploadMiddleware.single('file'), UploadRoutes.upload);
 
 apiRouter.use(Paths.Users._, userRouter);
 apiRouter.use(Paths.FeaturedTracks._, featuredTrackRouter);
@@ -74,6 +91,7 @@ apiRouter.use(Paths.Lyrics._, lyricsRouter);
 apiRouter.use(Paths.Albums._, albumsRouter);
 apiRouter.use(Paths.Gallery._, galleryImageRouter);
 apiRouter.use(Paths.BandInfo._, bandInfoRouter);
+apiRouter.use(Paths.Uploads._, uploadRouter);
 
 /******************************************************************************
                                 Export

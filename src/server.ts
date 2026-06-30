@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import path from 'path';
 
 import Paths from '@src/common/constants/Paths';
-import { RouteError } from '@src/common/utils/route-errors';
+import { RouteError } from '@src/errors/RouteError';
 import BaseRouter from '@src/routes/apiRouter';
 
 import EnvVars, { NodeEnvs } from './common/constants/env';
@@ -15,6 +15,8 @@ import dotenv from 'dotenv';
 import { connectDB } from './common/db';
 
 import cors from 'cors';
+
+import { errorHandler } from './middleware/errorHandler';
 
 /******************************************************************************
                                 Setup
@@ -44,15 +46,26 @@ if (EnvVars.NodeEnv === NodeEnvs.PRODUCTION) {
 app.use(Paths._, BaseRouter);
 
 // Add error handler
-app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
-  if (EnvVars.NodeEnv !== NodeEnvs.TEST.valueOf()) {
-    logger.err(err, true);
-  }
-  if (err instanceof RouteError) {
-    res.status(err.status).json({ error: err.message });
-  }
-  return next(err);
-});
+// app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
+//   if (EnvVars.NodeEnv !== NodeEnvs.TEST.valueOf()) {
+//     logger.err(err, true);
+//   }
+//    if (err instanceof RouteError) {
+//     return res.status(err.status).json({
+//       success: false,
+//       code: err.code,
+//       message: err.message,
+//       details: err.details,
+//     });
+//   }
+
+//   return res.status(500).json({
+//     success: false,
+//     message: 'Internal Server Error',
+//   });
+// });
+
+app.use(errorHandler);
 
 dotenv.config({path: 'config/.env.development'});
 

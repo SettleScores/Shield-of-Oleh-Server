@@ -34,6 +34,8 @@ export const mapAlbum = createMongoMapper(
         audioUrl: track.audioUrl,
         albumTitle: track.albumTitle,
         albumCoverUrl: track.albumCoverUrl,
+
+        objectKey: track.albumCoverUrl
       })
     ),
     created: databaseDocument.created,

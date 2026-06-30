@@ -29,18 +29,28 @@ const Paths = {
     _: '/lyrics',
     Get: '',
     GetOne: '/:slug',
+    Delete: '/:slug',
+    Put: '/:slug',
   },
   Albums: {
     _: '/albums',
     Get: '',
+    Post: '',
   },
   Gallery: {
     _: '/gallery',
     Get: '',
+    Post: '',
+    Delete: '/:slug',
   },
   BandInfo: {
     _: '/band-info',
     Get: '',
+    Put: '',
+  },
+  Uploads: {
+    _: '/uploads',
+    Post: '',
   },
 } as const;
 

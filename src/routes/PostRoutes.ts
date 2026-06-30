@@ -79,7 +79,7 @@ async function put(req: Req, res: Res) { /// TODO Extend with PATCH qqq
       success: true,
       data: post,
     });
-  } catch (err: any) {
+  } catch (err: any) { /// TODO ImproOve
     if (err.message === 'Post database document not found!') { /// maybe extract constant
       return res.status(HttpStatusCodes.NOT_FOUND).json({
         success: false,

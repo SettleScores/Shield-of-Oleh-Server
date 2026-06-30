@@ -1,7 +1,7 @@
 import { isNonEmptyString, isString, isUnsignedInteger } from 'jet-validators';
 import { parseObject, Schema, testObject } from 'jet-validators/utils';
 
-import { transformIsDate } from '@src/common/utils/validators';
+import { transformIsDate } from '@src/common/utils/validation-utils';
 
 import { Entity } from './common/types';
 
@@ -25,6 +25,7 @@ const isTrack = (value: any): value is ITrack => {
     typeof value.title === 'string' &&
     typeof value.duration === 'string' &&
     typeof value.audioUrl === 'string' &&
+    typeof value.objectKey === 'string' &&
     typeof value.albumTitle === 'string' &&
     typeof value.albumCoverUrl === 'string'
   );
@@ -54,6 +55,8 @@ export interface ITrack {
   audioUrl: string;
   albumTitle: string;
   albumCoverUrl: string;
+
+  objectKey: string;
 }
 
 export interface IAlbum extends Entity {

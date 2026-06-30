@@ -1,7 +1,7 @@
 import { isNonEmptyString, isString, isUnsignedInteger } from 'jet-validators';
 import { parseObject, Schema, testObject } from 'jet-validators/utils';
 
-import { transformIsDate } from '@src/common/utils/validators';
+import { transformIsDate } from '@src/common/utils/validation-utils';
 
 import { Entity } from './common/types';
 
@@ -14,6 +14,8 @@ const GetDefaults = (): IGalleryImage => ({
   url: '',
   thumbnailUrl: '',
   caption: '',
+  slug: '',
+  objectKey: '',
   created: new Date(),
 });
 
@@ -26,8 +28,10 @@ const GetDefaults = (): IGalleryImage => ({
  */
 export interface IGalleryImage extends Entity {
   url: string;
-  thumbnailUrl: string;
+  thumbnailUrl?: string;
   caption: string;
+  slug: string;
+  objectKey: string;
 }
 
 /******************************************************************************
@@ -38,7 +42,9 @@ const schema: Schema<IGalleryImage> = {
   id: isUnsignedInteger,
   url: isNonEmptyString,
   thumbnailUrl: isNonEmptyString,
-  caption: isString,  
+  caption: isString,
+  slug: isString,
+  objectKey: isString,  
   created: transformIsDate,
 };
 
