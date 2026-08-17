@@ -43,6 +43,8 @@ userRouter.delete(Paths.Users.Delete, UserRoutes.delete);
 const featuredTrackRouter = Router();
 
 featuredTrackRouter.get(Paths.FeaturedTracks.Get, FeaturedTrackRoutes.getAll);
+featuredTrackRouter.put(Paths.FeaturedTracks.Put, FeaturedTrackRoutes.putFeatured);
+featuredTrackRouter.put(Paths.FeaturedTracks.PutOne, FeaturedTrackRoutes.putOne);
 
 const postRouter = Router()
 
@@ -55,11 +57,13 @@ postRouter.put(Paths.Posts.Delete, PostRoutes.put);
 const aboutRouter = Router()
 
 aboutRouter.get(Paths.About.Get, AboutRoutes.getAll);
+aboutRouter.put(Paths.About.Put, AboutRoutes.putt);
 
 const lyricsRouter = Router()
 
 lyricsRouter.get(Paths.Lyrics.Get, LyricsRoutes.getAll);
 lyricsRouter.get(Paths.Lyrics.GetOne, LyricsRoutes.getOne);
+lyricsRouter.post(Paths.Lyrics.Post, LyricsRoutes.post);
 lyricsRouter.delete(Paths.Lyrics.Delete, LyricsRoutes.deletee);
 lyricsRouter.put(Paths.Lyrics.Put, LyricsRoutes.putt);
 
@@ -67,6 +71,8 @@ const albumsRouter = Router();
 
 albumsRouter.get(Paths.Albums.Get, AlbumRoutes.getAll);
 albumsRouter.post(Paths.Albums.Post, AlbumRoutes.post);
+albumsRouter.put(Paths.Albums.Put, AlbumRoutes.putt);
+albumsRouter.delete(Paths.Albums.Delete, AlbumRoutes.deletee);
 
 const galleryImageRouter = Router();
 

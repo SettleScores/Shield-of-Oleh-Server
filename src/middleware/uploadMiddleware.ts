@@ -4,6 +4,8 @@ export const uploadMiddleware = multer({
   storage: multer.memoryStorage(),
 
   limits: {
-    fileSize: 10 * 1024 * 1024,
+    // Must cover the largest allowed file type (audio, 100MB).
+    // Per-type limits are enforced in UploadService.
+    fileSize: 100 * 1024 * 1024,
   },
 });

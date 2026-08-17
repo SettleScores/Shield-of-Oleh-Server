@@ -54,6 +54,18 @@ async function post(
   }
 }
 
+function putt(_: Req, res: Res) {
+  return res
+    .status(HttpStatusCodes.NOT_IMPLEMENTED)
+    .json({ message: 'PUT /albums/:id is not implemented yet' });
+}
+
+function deletee(_: Req, res: Res) {
+  return res
+    .status(HttpStatusCodes.NOT_IMPLEMENTED)
+    .json({ message: 'DELETE /albums/:id is not implemented yet' });
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
@@ -61,4 +73,6 @@ async function post(
 export default {
   getAll,
   post,
+  putt,
+  deletee,
 } as const;

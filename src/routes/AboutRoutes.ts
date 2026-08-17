@@ -13,10 +13,17 @@ async function getAll(_: Req, res: Res) {
   res.status(HttpStatusCodes.OK).json(about);
 }
 
+function putt(_: Req, res: Res) {
+  return res
+    .status(HttpStatusCodes.NOT_IMPLEMENTED)
+    .json({ message: 'PUT /about is not implemented yet' });
+}
+
 /******************************************************************************
                                 Export default
 ******************************************************************************/
 
 export default {
   getAll,
+  putt,
 } as const;

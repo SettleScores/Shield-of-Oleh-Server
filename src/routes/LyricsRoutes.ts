@@ -21,6 +21,12 @@ async function getOne(req: Req, res: Res) {
   res.status(HttpStatusCodes.OK).json(lyrics);
 }
 
+function post(_: Req, res: Res) {
+  return res
+    .status(HttpStatusCodes.NOT_IMPLEMENTED)
+    .json({ message: 'POST /lyrics is not implemented yet' });
+}
+
 async function deletee(req: Req, res: Res) {
   const { slug } = req.params;
 
@@ -79,6 +85,7 @@ async function putt(req: Req, res: Res) { /// TODO Extend with PATCH qqq
 export default {
   getAll,
   getOne,
+  post,
   deletee,
   putt,
 } as const;

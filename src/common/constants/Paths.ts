@@ -12,6 +12,8 @@ const Paths = {
   FeaturedTracks: {
     _: '/tracks',
     Get: '/featured',
+    Put: '/featured',
+    PutOne: '/:id',
   },
   Posts: {
     _: '/posts',
@@ -24,11 +26,13 @@ const Paths = {
   About: {
     _: '/about',
     Get: '',
+    Put: '',
   },
   Lyrics: {
     _: '/lyrics',
     Get: '',
     GetOne: '/:slug',
+    Post: '',
     Delete: '/:slug',
     Put: '/:slug',
   },
@@ -36,6 +40,8 @@ const Paths = {
     _: '/albums',
     Get: '',
     Post: '',
+    Put: '/:id',
+    Delete: '/:id',
   },
   Gallery: {
     _: '/gallery',
